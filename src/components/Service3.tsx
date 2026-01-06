@@ -90,8 +90,8 @@ const Services3Section = () => {
   return (
     <section 
       id="nursing-home" 
-      className="mt-[-70px] pb-[200px] pt-[80px] bg-white relative mb-[-60px]" 
-      style={{ borderBottomLeftRadius: "70px", borderBottomRightRadius: "70px" }}
+      className="mt-[-70px] pb-[200px] pt-[80px] bg-white relative mb-[-60px] rounded-b-[40px] md:rounded-b-[70px]" 
+  
     >
       <div className="mx-auto px-6">
         {/* Section Header */}

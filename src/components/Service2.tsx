@@ -32,7 +32,7 @@ const services = [
 
 const Services2Section = () => {
   return (
-    <section id="on-site-therapys" className="mt-[-70px] pb-20 pt-[80px] bg-white pt-[200px]" style={{ borderTopLeftRadius: "70px", borderTopRightRadius: "70px" }}>
+    <section id="on-site-therapys" className="mt-[-70px] pb-20 pt-[80px] bg-white pt-[200px] rounded-t-[40px] md:rounded-t-[70px]" >
       <div className="mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">

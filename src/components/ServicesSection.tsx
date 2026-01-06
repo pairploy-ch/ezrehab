@@ -61,7 +61,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-20 bg-[#387C6B] -mt-32 relative z-20" style={{borderTopLeftRadius: '100px',borderTopRightRadius: '100px'}}>
+    <section id="services" className="py-20 bg-[#387C6B] -mt-32 relative z-20 rounded-t-[40px] md:rounded-t-[70px]" >
       <div className="container mx-auto px-6" >
         {/* Section Header */}
         <div className="text-center mb-16">

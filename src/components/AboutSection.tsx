@@ -1,6 +1,6 @@
 const AboutSection = () => {
   return (
-    <section id="about" className="pb-20 bg-[#387C6B]" style={{borderBottomLeftRadius: '100px',borderBottomRightRadius: '100px'}}>
+    <section id="about" className="pb-20 bg-[#387C6B] rounded-b-[40px] md:rounded-b-[70px]" >
       <div className="container mx-auto px-6">
         {/* Separator Line */}
         <div className="flex justify-center mb-16">

@@ -11,88 +11,66 @@ const Footer = () => {
       className=""
       style={{ borderTopLeftRadius: "70px", borderTopRightRadius: "70px" }}
     >
-      <div className=" px-6 bg-[#387C6B] py-12 pt-[110px]">
-        <div className="flex max-w-[90%] mx-auto" style={{ justifyContent: "space-between" }}>
+      <div className="px-4 sm:px-6 bg-[#387C6B] pb-[3rem] pt-[110px]">
+        <div className="flex flex-col lg:flex-row max-w-[90%] mx-auto gap-8 lg:gap-0" style={{ justifyContent: "space-between" }}>
           {/* Logo & Address */}
           <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
+            className="flex flex-col justify-between"
           >
             <div className="mb-4">
               <img
                 src={logo}
                 alt="EZREHAB Logo"
-                className="h-4 brightness-0 invert"
+                className="h-3 sm:h-4 brightness-0 invert"
               />
             </div>
 
             <div>
-              <h3 className="text-3xl font-medium text-white mt-4">
+              <h3 className="text-2xl sm:text-3xl font-medium text-white mt-2 sm:mt-4">
                 EAZYREHUB
               </h3>
-              <p className="text-[#C0C0C0] text-md mt-4">
+              <p className="text-[#C0C0C0] text-sm sm:text-md mt-2 sm:mt-4">
                 00/0 Sukhumwit Road, Sukhumwit , <br />
                 Sukhumwit , Bangkok 10101
               </p>
             </div>
           </div>
 
-          {/* QR Code */}
-          {/* <div className="flex flex-col items-center">
-            <div className="bg-card p-4 rounded-2xl mb-4">
-              <div className="w-32 h-32 bg-muted rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground text-xs text-center">
-                  QR Code
-                  <br />
-                  LINE
-                </span>
-              </div>
-            </div>
-            <button className="bg-teal hover:bg-teal-light text-white px-6 py-2 rounded-full flex items-center gap-2 transition-colors">
-              <MessageCircle className="w-5 h-5" />
-              ADD LINE
-            </button>
-          </div> */}
-
           {/* Contact Info */}
           <div
-            className="bg-white/20 p-6 flex"
+            className="bg-white/20 p-4 sm:p-6 flex flex-col sm:flex-row"
             style={{ borderRadius: "40px", border: "1px solid #BCBCBC" }}
           >
-            <div>
-               <img src={qrcode} alt="EZREHAB Logo" className="h-[230px]" />
+            <div className="flex justify-center sm:justify-start mb-4 sm:mb-0">
+               <img src={qrcode} alt="QR Code" className="h-[180px] sm:h-[230px]" />
             </div>
-            <div className="ml-8" style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-              <h3 className="text-4xl text-white mb-6">Contact Us</h3>
-              <div className="space-y-4 mb-2">
+            <div className="sm:ml-8 flex flex-col justify-between">
+              <h3 className="text-2xl sm:text-4xl text-white mb-4 sm:mb-6 text-center sm:text-left">Contact Us</h3>
+              <div className="space-y-3 sm:space-y-4 mb-2">
                 <a
                   href="https://youtube.com/@EzRehabกายภาพ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
-                   <img src={youtube} alt="EZREHAB Logo" className="h-[30px]" />
-                  <span className="text-xl">
+                   <img src={youtube} alt="YouTube" className="h-[24px] sm:h-[30px] flex-shrink-0" />
+                  <span className="text-sm sm:text-xl break-all">
                     https://youtube.com/@EzRehabกายภาพ
                   </span>
                 </a>
                 <a
-                  href="tel:0871041888"
-                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                  href="tel:0971241688"
+                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
-                  <img src={phone} alt="EZREHAB Logo" className="h-[30px]" />
-                  <span className="text-xl">097 124 1688</span>
+                  <img src={phone} alt="Phone" className="h-[24px] sm:h-[30px] flex-shrink-0" />
+                  <span className="text-sm sm:text-xl">097 124 1688</span>
                 </a>
                 <a
-                style={{marginTop: '12px'}}
                   href="#"
-                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors mt-3 sm:mt-3"
                 >
-                   <img src={fb} alt="EZREHAB Logo" className="h-[35px]" />
-                  <span className="text-xl" style={{marginLeft: '-7px'}}>
+                   <img src={fb} alt="Facebook" className="h-[28px] sm:h-[35px] flex-shrink-0" />
+                  <span className="text-sm sm:text-xl sm:ml-[-7px]">
                     Eazy Rehub กายภาพบำบัดที่บ้าน
                   </span>
                 </a>
@@ -101,7 +79,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="h-[38px] bg-[#EBB108]">
+      <div className="h-[28px] sm:h-[38px] bg-[#EBB108]">
       
       </div>
     </footer>
