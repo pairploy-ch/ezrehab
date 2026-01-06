@@ -4,7 +4,7 @@ const AboutSection = () => {
       <div className="container mx-auto px-6">
         {/* Separator Line */}
         <div className="flex justify-center mb-16">
-          <div className="w-32 h-0.5 bg-primary-foreground/30 rounded-full" />
+          <div className="w-[40%] h-0.5 bg-primary-foreground/30 rounded-full" />
         </div>
 
         <div className="max-w-7xl mx-auto text-center">

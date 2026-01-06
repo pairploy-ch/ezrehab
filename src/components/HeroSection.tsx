@@ -3,7 +3,7 @@ import logo from '@/assets/logo.png';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative overflow-hidden min-h-screen pb-32">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
@@ -12,12 +12,12 @@ const HeroSection = () => {
           className="w-full h-full object-cover"
         />
         {/* Green Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-forest/90 via-forest/70 to-transparent" />
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/70 to-transparent" /> */}
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 pt-32 pb-20 min-h-screen flex items-end">
-        <div className="max-w-xl animate-slide-in">
+      <div className="relative z-10 max-w-[90%] mx-auto px-6 pt-32 pb-20 min-h-screen flex items-end">
+        <div className=" animate-slide-in">
           <img src={logo} alt="EZREHAB" className="h-8 mb-6 brightness-0 invert opacity-20" />
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-primary-foreground mt-4">
             เราไม่ใช่แค่รักษา

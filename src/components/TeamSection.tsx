@@ -1,10 +1,14 @@
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import teamMember1 from '@/assets/team-1.png';
-import teamMember2 from '@/assets/team-1.png';
-import teamMember3 from '@/assets/team-1.png';
-import teamMember4 from '@/assets/team-1.png';
-import teamMember5 from '@/assets/team-1.png';
+import teamMember9 from '@/assets/team-9.png';
+import teamMember2 from '@/assets/team-2.png';
+import teamMember3 from '@/assets/team-3.png';
+import teamMember4 from '@/assets/team-4.png';
+import teamMember5 from '@/assets/team-5.png';
+import teamMember6 from '@/assets/team-6.png';
+import teamMember7 from '@/assets/team-7.png';
+import teamMember8 from '@/assets/team-8.png';
 
 const teamMembers = [
   {
@@ -14,65 +18,53 @@ const teamMembers = [
     license: 'ก.111111'
   },
   {
-    image: teamMember2,
+    image: teamMember9,
     name: 'ธรรมธรร เตชะพิสิษฐ์',
     title: 'นักกายภาพ',
     license: 'ก.13529'
   },
   {
-    image: teamMember3,
+    image: teamMember2,
     name: 'ธีรเดช ศรีวิเศษ',
     title: 'นักกายภาพ',
     license: 'ก.17023'
   },
   {
-    image: teamMember4,
+    image: teamMember3,
     name: 'ชุษณธร เลาหรัตนวิเศษ',
     title: 'นักกายภาพ',
     license: 'ก.17027'
   },
   {
-    image: teamMember5,
-    name: 'อัครนันท์ โกวิ',
+    image: teamMember4,
+    name: 'อัครนันท์ โกวิทเจริญวัฒน์',
     title: 'นักกายภาพ',
-    license: 'ก.13'
+    license: 'ก.13963'
   },
     {
-    image: teamMember3,
-    name: 'ธีรเดช ศรีวิเศษ',
-    title: 'นักกายภาพ',
-    license: 'ก.17023'
-  },
-  {
-    image: teamMember4,
-    name: 'ชุษณธร เลาหรัตนวิเศษ',
-    title: 'นักกายภาพ',
-    license: 'ก.17027'
-  },
-  {
     image: teamMember5,
-    name: 'อัครนันท์ โกวิ',
+    name: 'วินิตตา  ตรวจมรรคา',
     title: 'นักกายภาพ',
-    license: 'ก.13'
-  }
-  ,  {
-    image: teamMember3,
-    name: 'ธีรเดช ศรีวิเศษ',
-    title: 'นักกายภาพ',
-    license: 'ก.17023'
+    license: 'ก.0000'
   },
-  {
-    image: teamMember4,
-    name: 'ชุษณธร เลาหรัตนวิเศษ',
+    {
+    image: teamMember6,
+    name: 'สุพิชชา วงศ์ผาสุกสถาพร',
     title: 'นักกายภาพ',
-    license: 'ก.17027'
+    license: 'ก.0000'
   },
-  {
-    image: teamMember5,
-    name: 'อัครนันท์ โกวิ',
+      {
+    image: teamMember7,
+    name: 'ฐิติยา วิบูลธิติ',
     title: 'นักกายภาพ',
-    license: 'ก.13'
-  }
+    license: 'ก.0000'
+  },
+       {
+    image: teamMember8,
+    name: 'สุนิทรา มงคลวัร์',
+    title: 'นักกายภาพ',
+    license: 'ก.16102'
+  },
 ];
 
 const TeamSection = () => {

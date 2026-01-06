@@ -11,7 +11,7 @@ const services = [
     icon: icon1,
     title: 'คลินิกกายภาพบำบัด',
     description: 'รักษาบำบัดฟื้นฟูทางกายภาพบำบัด ทั้งกระดูกและกล้ามเนื้อ ระบบประสาทและสมอง',
-    link: '#',
+    link: '/service/#clinic',
     iconBg: 'bg-[#00937933]',
     iconColor: 'text-coral'
   },
@@ -19,7 +19,7 @@ const services = [
     icon: icon2,
     title: 'กายภาพบำบัดนอกสถานที่',
     description: 'รักษาฟื้นฟู ที่บ้าน คลินิก เนอร์สซิ่งโฮม ศูนย์ดูแลผู้สูงอายุ',
-    link: '#',
+    link: '/service/#on-site-therapys',
     iconBg: 'bg-[#FF625033]',
     iconColor: 'text-coral'
   },
@@ -27,7 +27,7 @@ const services = [
   icon: icon3,
     title: 'ที่ปรึกษาครบวงจรสำหรับ เนอร์สซิ่งโฮมและศูนย์ดูแลผู้สูงอายุ',
     description: 'ให้คำปรึกษาครบวงจร สหวิชาชีพ ทั้งการจัดตั้งคลินิก การรักษา การตลาด',
-    link: '#',
+    link: '/service/#nursing-home',
     iconBg: 'bg-[#00937933]',
     iconColor: 'text-forest'
   },
@@ -61,7 +61,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-20 bg-[#387C6B]" style={{borderTopLeftRadius: '100px',borderTopRightRadius: '100px'}}>
+    <section id="services" className="py-20 bg-[#387C6B] -mt-32 relative z-20" style={{borderTopLeftRadius: '100px',borderTopRightRadius: '100px'}}>
       <div className="container mx-auto px-6" >
         {/* Section Header */}
         <div className="text-center mb-16">

@@ -1,60 +1,36 @@
 import { Activity, ArrowRight, Phone, FileText, Users, Truck, GraduationCap } from 'lucide-react';
+import clinic6 from '@/assets/clinic-6.png';
+import clinic1 from '@/assets/clinic-1.png';
+import clinic2 from '@/assets/clinic-2.png';
+import clinic3 from '@/assets/clinic-3.png';
+import clinic4 from '@/assets/clinic-4.png';
+import clinic5 from '@/assets/clinic-5.png';
 
-// ใช้ placeholder images เนื่องจากไม่มี assets จริง
 const services = [
   {
-    icon: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop',
-    title: 'คลินิกกายภาพบำบัด',
-    description: 'รักษาบำบัดฟื้นฟูทางกายภาพบำบัด ทั้งกระดูกและกล้ามเนื้อ ระบบประสาทและสมอง',
-    link: '#',
-    iconBg: 'bg-[#00937933]',
-    iconColor: 'text-coral'
+    icon: clinic6,
   },
-  {
-    icon: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&h=600&fit=crop',
-    title: 'กายภาพบำบัดนอกสถานที่',
-    description: 'รักษาฟื้นฟู ที่บ้าน คลินิก เนอร์สซิ่งโฮม ศูนย์ดูแลผู้สูงอายุ',
-    link: '#',
-    iconBg: 'bg-[#FF625033]',
-    iconColor: 'text-coral'
+    {
+    icon: clinic1,
   },
-  {
-    icon: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&h=600&fit=crop',
-    title: 'ที่ปรึกษาครบวงจรสำหรับ เนอร์สซิ่งโฮมและศูนย์ดูแลผู้สูงอายุ',
-    description: 'ให้คำปรึกษาครบวงจร สหวิชาชีพ ทั้งการจัดตั้งคลินิก การรักษา การตลาด',
-    link: '#',
-    iconBg: 'bg-[#00937933]',
-    iconColor: 'text-forest'
+    {
+    icon: clinic2,
   },
-  {
-    icon: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop',
-    title: 'สหวิชาชีพ',
-    description: 'กิจกรรมบำบัด แก้ไขการพูด',
-    link: null,
-    iconBg: 'bg-[#00937933]',
-    iconColor: 'text-coral'
+    {
+    icon: clinic3,
   },
-  {
-    icon: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&h=600&fit=crop',
-    title: 'รับส่งผู้สูงอายุ',
-    description: 'ดูแล รับ ส่ง ตลอดการเดินทางพบหมอ และส่งกลับบ้าน รวมการส่งการส่งเอกสาร รับยาแทน',
-    link: null,
-    iconBg: 'bg-[#FF625033]',
-    iconColor: 'text-forest'
+    {
+    icon: clinic4,
   },
-  {
-    icon: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
-    title: 'อบรมความรู้สุขภาพ กายภาพบำบัด',
-    description: 'จัดอบรมความรู้ให้กับบริษัท จัดกิจกรรม สอนผู้ดูแลผู้สูงอายุ',
-    link: null,
-    iconBg: 'bg-[#00937933]',
-    iconColor: 'text-forest'
-  }
+    {
+    icon: clinic5,
+  },
+
 ];
 
 const Services1Section = () => {
   return (
-    <section id="services" className="pb-20 bg-[#387C6B] pt-[200px] pb-[10rem]">
+    <section id="clinic" className="pb-20 bg-[#387C6B] pt-[200px] pb-[10rem]">
       <div className="mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -76,7 +52,7 @@ const Services1Section = () => {
               {/* Image */}
               <img 
                 src={service.icon} 
-                alt={service.title} 
+                alt={service.icon} 
                 className="w-full h-full object-cover"
               />
               

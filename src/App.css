@@ -6,6 +6,8 @@
 
   /* ✅ บังคับใช้ IBM Plex Sans */
   font-family: "Kanit", sans-serif;
+  background-color: #fff !important;
+  background: #fff !important;
 }
 
 .logo {

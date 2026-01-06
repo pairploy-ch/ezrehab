@@ -1,39 +1,77 @@
 import { useRef, useState } from 'react';
+import icon1 from '@/assets/icon-nurse-1.png';
+import icon2 from '@/assets/icon-nurse-2.png';
+import icon3 from '@/assets/icon-nurse-3.png';
+import icon4 from '@/assets/icon-nurse-4.png';
+import icon5 from '@/assets/icon-nurse-5.png';
+import icon6 from '@/assets/icon-nurse-6.png';
+import icon7 from '@/assets/icon-nurse-7.png';
+import icon8 from '@/assets/icon-nurse-8.png';
+import icon9 from '@/assets/icon-nurse-9.png';
+import icon10 from '@/assets/icon-nurse-10.png';
+import icon11 from '@/assets/icon-nurse-11.png';
+import icon12 from '@/assets/icon-nurse-12.png';
+import icon13 from '@/assets/icon-nurse-13.png';
+import icon14 from '@/assets/icon-nurse-14.png';
 
-// ใช้ placeholder images เนื่องจากไม่มี assets จริง
 const partners = [
   {
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=400&fit=crop',
-    name: 'บ้านและเรา เนอร์สซิ่งโฮม',
+    image: icon1,
+    
   },
-  {
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&h=400&fit=crop',
-    name: 'บ้านแสนรัก Healthcare',
+
+   {
+    image: icon2,
+    
   },
-  {
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop',
-    name: 'Happy Home Senior',
+   {
+    image: icon3,
+    
   },
-  {
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=400&fit=crop',
-    name: 'Nont Wellness',
+   {
+    image: icon4,
+    
   },
-  {
-    image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=400&h=400&fit=crop',
-    name: 'Charn-Chim Recovery',
+   {
+    image: icon5,
+    
   },
-  {
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop',
-    name: 'Senior Care Center',
+   {
+    image: icon6,
+    
   },
-  {
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&h=400&fit=crop',
-    name: 'Elderly Support',
+   {
+    image: icon7,
+    
   },
-  {
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&h=400&fit=crop',
-    name: 'Care Plus',
-  }
+   {
+    image: icon8,
+    
+  },
+   {
+    image: icon9,
+    
+  },
+   {
+    image: icon10,
+    
+  },
+   {
+    image: icon11,
+    
+  },
+   {
+    image: icon12,
+    
+  },
+   {
+    image: icon13,
+    
+  },
+   {
+    image: icon14,
+    
+  },
 ];
 
 const Services3Section = () => {
@@ -51,14 +89,14 @@ const Services3Section = () => {
 
   return (
     <section 
-      id="services" 
+      id="nursing-home" 
       className="mt-[-70px] pb-[200px] pt-[80px] bg-white relative mb-[-60px]" 
       style={{ borderBottomLeftRadius: "70px", borderBottomRightRadius: "70px" }}
     >
       <div className="mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16  pt-[30px]">
-          <h2 className="text-5xl md:text-8xl font-medium text-[#387C6B] mb-4" style={{lineHeight: '1.2'}}>
+          <h2 className="text-5xl md:text-7xl font-medium text-[#387C6B] mb-4" style={{lineHeight: '1.2'}}>
             ที่ปรึกษาครบวงจรสำหรับ <br />
             เนอร์สซิ่งโฮมและศูนย์ดูแลผู้สูงอายุ
           </h2>
@@ -79,14 +117,14 @@ const Services3Section = () => {
             {partners.map((partner, index) => (
               <div 
                 key={index} 
-                className="flex-shrink-0 w-72 text-center group"
+                className="flex-shrink-0 w-36 text-center group ml-20"
               >
                 {/* Logo Container */}
            
                   <div className="w-full aspect-square flex items-center justify-center">
                     <img 
                       src={partner.image} 
-                      alt={partner.name}
+                      alt={partner.image}
                       className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
