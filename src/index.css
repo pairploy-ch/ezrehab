@@ -1,0 +1,169 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  :root {
+    --background: 45 33% 96%;
+    --foreground: 168 54% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 168 54% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 168 54% 20%;
+
+    --primary: 168 54% 22%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 30% 93%;
+    --secondary-foreground: 168 54% 20%;
+
+    --muted: 40 25% 90%;
+    --muted-foreground: 168 30% 40%;
+
+    --accent: 15 60% 72%;
+    --accent-foreground: 168 54% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 168 20% 80%;
+    --input: 168 20% 80%;
+    --ring: 168 54% 22%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors */
+    --teal: 174 50% 45%;
+    --teal-light: 174 45% 55%;
+    --coral: 15 65% 72%;
+    --coral-light: 15 70% 90%;
+    --mint: 160 40% 85%;
+    --cream: 40 30% 95%;
+    --forest: 168 54% 22%;
+    --forest-dark: 168 60% 15%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 168 54% 10%;
+    --foreground: 40 30% 95%;
+
+    --card: 168 54% 15%;
+    --card-foreground: 40 30% 95%;
+
+    --popover: 168 54% 15%;
+    --popover-foreground: 40 30% 95%;
+
+    --primary: 174 50% 45%;
+    --primary-foreground: 168 54% 10%;
+
+    --secondary: 168 40% 20%;
+    --secondary-foreground: 40 30% 95%;
+
+    --muted: 168 40% 25%;
+    --muted-foreground: 40 20% 70%;
+
+    --accent: 15 60% 72%;
+    --accent-foreground: 168 54% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 168 40% 25%;
+    --input: 168 40% 25%;
+    --ring: 174 50% 45%;
+  }
+}
+
+@layer base {
+  html {
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply text-primary-foreground/90 hover:text-primary-foreground transition-colors duration-200;
+  }
+
+  .service-card {
+    @apply bg-card rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .icon-wrapper {
+    @apply w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4;
+  }
+
+  .icon-coral {
+    @apply bg-coral/20;
+  }
+
+  .icon-teal {
+    @apply bg-teal/20;
+  }
+
+  .icon-mint {
+    @apply bg-mint;
+  }
+
+  .team-card {
+    @apply relative overflow-hidden rounded-t-full;
+  }
+
+  .license-badge {
+    @apply absolute bottom-4 left-1/2 -translate-x-1/2 bg-teal text-white px-4 py-1 rounded-full text-sm font-medium;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-semibold text-forest mb-4;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-forest-dark transition-colors duration-200;
+  }
+
+  .footer-section {
+    @apply bg-forest text-white;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
