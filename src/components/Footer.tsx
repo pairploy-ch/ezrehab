@@ -3,15 +3,15 @@ import logo from '@/assets/logo.png';
 
 const Footer = () => {
   return (
-    <footer className="footer-section py-12">
-      <div className="container mx-auto px-6">
+    <footer className="bg-[#387C6B] py-12" style={{borderTopLeftRadius: '70px',borderTopRightRadius: '70px'}}>
+      <div className="max-w-[90%] mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-12">
           {/* Logo & Address */}
           <div>
             <div className="mb-4">
-              <img src={logo} alt="EZREHAB Logo" className="h-8 brightness-0 invert" />
+              <img src={logo} alt="EZREHAB Logo" className="h-4 brightness-0 invert" />
             </div>
-            <h3 className="text-xl font-bold mb-4">EAZYREHUB</h3>
+            <h3 className="text-xl font-bold mt-4">EAZYREHUB</h3>
             <p className="text-primary-foreground/70 text-sm">
               69/2 ถนนพหลโยธิน Road, Lat Yao sub-,
               <br />

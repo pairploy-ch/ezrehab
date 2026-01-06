@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import teamMember1 from '@/assets/team-member-1.jpg';
-import teamMember2 from '@/assets/team-member-2.jpg';
-import teamMember3 from '@/assets/team-member-3.jpg';
-import teamMember4 from '@/assets/team-member-4.jpg';
-import teamMember5 from '@/assets/team-member-5.jpg';
+import teamMember1 from '@/assets/team-1.png';
+import teamMember2 from '@/assets/team-1.png';
+import teamMember3 from '@/assets/team-1.png';
+import teamMember4 from '@/assets/team-1.png';
+import teamMember5 from '@/assets/team-1.png';
 
 const teamMembers = [
   {
@@ -20,6 +20,42 @@ const teamMembers = [
     license: 'ก.13529'
   },
   {
+    image: teamMember3,
+    name: 'ธีรเดช ศรีวิเศษ',
+    title: 'นักกายภาพ',
+    license: 'ก.17023'
+  },
+  {
+    image: teamMember4,
+    name: 'ชุษณธร เลาหรัตนวิเศษ',
+    title: 'นักกายภาพ',
+    license: 'ก.17027'
+  },
+  {
+    image: teamMember5,
+    name: 'อัครนันท์ โกวิ',
+    title: 'นักกายภาพ',
+    license: 'ก.13'
+  },
+    {
+    image: teamMember3,
+    name: 'ธีรเดช ศรีวิเศษ',
+    title: 'นักกายภาพ',
+    license: 'ก.17023'
+  },
+  {
+    image: teamMember4,
+    name: 'ชุษณธร เลาหรัตนวิเศษ',
+    title: 'นักกายภาพ',
+    license: 'ก.17027'
+  },
+  {
+    image: teamMember5,
+    name: 'อัครนันท์ โกวิ',
+    title: 'นักกายภาพ',
+    license: 'ก.13'
+  }
+  ,  {
     image: teamMember3,
     name: 'ธีรเดช ศรีวิเศษ',
     title: 'นักกายภาพ',
@@ -53,10 +89,10 @@ const TeamSection = () => {
   };
 
   return (
-    <section className="py-20 bg-card relative">
-      <div className="container mx-auto px-6">
+    <section className="pt-20 pb-10 bg-card relative">
+      <div className="max-w-[100%] mx-auto px-6">
         {/* Navigation Buttons */}
-        <button 
+        {/* <button 
           onClick={() => scroll('left')}
           className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-card shadow-lg rounded-full flex items-center justify-center hover:bg-muted transition-colors"
           aria-label="Scroll left"
@@ -69,7 +105,7 @@ const TeamSection = () => {
           aria-label="Scroll right"
         >
           <ChevronRight className="w-6 h-6 text-forest" />
-        </button>
+        </button> */}
 
         {/* Team Carousel */}
         <div 
@@ -79,11 +115,12 @@ const TeamSection = () => {
           {teamMembers.map((member, index) => (
             <div 
               key={index} 
-              className="flex-shrink-0 w-64 text-center group"
+              className="flex-shrink-0 w-80 text-center group pb-5"
+              style={{boxShadow: '34.85px 29.63px 48.34px 0px rgba(51, 102, 255, 0.05)', borderRadius: '20px'}}
             >
               {/* Photo Container */}
               <div className="relative mb-6 overflow-hidden">
-                <div className="w-full h-80 bg-muted overflow-hidden">
+                <div className="w-full h-100 bg-white overflow-hidden">
                   <img 
                     src={member.image} 
                     alt={member.name}
@@ -93,15 +130,15 @@ const TeamSection = () => {
               </div>
               
               {/* License Badge */}
-              <div className="inline-block bg-amber-400 text-forest-dark px-6 py-2 rounded-full text-sm font-bold mb-4 shadow-md">
+              <div className="inline-block bg-[#EBB108] text-white px-8 py-1 rounded-full text-lg font-medium mb-4">
                 {member.license}
               </div>
               
               {/* Name & Title */}
-              <h3 className="font-semibold text-forest text-lg mb-1">
+              <h3 className="font-medium text-[#545454] text-xl mb-1">
                 {member.name}
               </h3>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-[#545454] text-md">
                 {member.title}
               </p>
             </div>

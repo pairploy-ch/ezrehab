@@ -18,15 +18,23 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 pt-32 pb-20 min-h-screen flex items-end">
         <div className="max-w-xl animate-slide-in">
-          <img src={logo} alt="EZREHAB" className="h-6 mb-4 brightness-0 invert opacity-80" />
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6">
+          <img src={logo} alt="EZREHAB" className="h-8 mb-6 brightness-0 invert opacity-20" />
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-primary-foreground mt-4">
             เราไม่ใช่แค่รักษา
-            <br />
-            แต่ช่วยให้คุณกลับมา
-            <br />
-            ใช้ชีวิตได้เต็มที่อีกครั้ง
+          
           </h1>
-          <p className="text-primary-foreground/80 text-lg mb-8">
+             <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-primary-foreground mt-4">
+               แต่ช่วยให้คุณกลับมา
+          
+          </h1>
+               <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#55FFD5] mt-4">
+               ใช้ชีวิตได้เต็มที่อีกครั้ง
+          
+          </h1>
+         
+           
+            
+          <p className="text-white text-lg mt-8">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             <br />
             Sem velit viverra amet faucibus.

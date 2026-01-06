@@ -1,92 +1,101 @@
 import { Activity, ArrowRight, Phone, FileText, Users, Truck, GraduationCap } from 'lucide-react';
+import icon1 from '@/assets/icon-service-1.png';
+import icon2 from '@/assets/icon-service-2.png';
+import icon3 from '@/assets/icon-service-3.png';
+import icon4 from '@/assets/icon-service-4.png';
+import icon5 from '@/assets/icon-service-5.png';
+import icon6 from '@/assets/icon-service-6.png';
 
 const services = [
   {
-    icon: Activity,
+    icon: icon1,
     title: 'คลินิกกายภาพบำบัด',
     description: 'รักษาบำบัดฟื้นฟูทางกายภาพบำบัด ทั้งกระดูกและกล้ามเนื้อ ระบบประสาทและสมอง',
     link: '#',
-    iconBg: 'bg-coral/20',
+    iconBg: 'bg-[#00937933]',
     iconColor: 'text-coral'
   },
   {
-    icon: ArrowRight,
+    icon: icon2,
     title: 'กายภาพบำบัดนอกสถานที่',
     description: 'รักษาฟื้นฟู ที่บ้าน คลินิก เนอร์สซิ่งโฮม ศูนย์ดูแลผู้สูงอายุ',
     link: '#',
-    iconBg: 'bg-coral/20',
+    iconBg: 'bg-[#FF625033]',
     iconColor: 'text-coral'
   },
   {
-    icon: Phone,
+  icon: icon3,
     title: 'ที่ปรึกษาครบวงจรสำหรับ เนอร์สซิ่งโฮมและศูนย์ดูแลผู้สูงอายุ',
     description: 'ให้คำปรึกษาครบวงจร สหวิชาชีพ ทั้งการจัดตั้งคลินิก การรักษา การตลาด',
     link: '#',
-    iconBg: 'bg-mint',
+    iconBg: 'bg-[#00937933]',
     iconColor: 'text-forest'
   },
   {
-    icon: FileText,
+    icon: icon4,
     title: 'สหวิชาชีพ',
     description: 'กิจกรรมบำบัด แก้ไขการพูด',
     link: null,
-    iconBg: 'bg-coral/20',
+   
+   
+    iconBg: 'bg-[#00937933]',
     iconColor: 'text-coral'
   },
   {
-    icon: Truck,
+   icon: icon5,
     title: 'รับส่งผู้สูงอายุ',
     description: 'ดูแล รับ ส่ง ตลอดการเดินทางพบหมอ และส่งกลับบ้าน รวมการส่งการส่งเอกสาร รับยาแทน',
     link: null,
-    iconBg: 'bg-mint',
+    iconBg: 'bg-[#FF625033]',
     iconColor: 'text-forest'
   },
   {
-    icon: GraduationCap,
+    icon: icon6,
     title: 'อบรมความรู้สุขภาพ กายภาพบำบัด',
     description: 'จัดอบรมความรู้ให้กับบริษัท จัดกิจกรรม สอนผู้ดูแลผู้สูงอายุ',
     link: null,
-    iconBg: 'bg-mint',
+    iconBg: 'bg-[#00937933]',
     iconColor: 'text-forest'
   }
 ];
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-20 bg-forest">
-      <div className="container mx-auto px-6">
+    <section id="services" className="py-20 bg-[#387C6B]" style={{borderTopLeftRadius: '100px',borderTopRightRadius: '100px'}}>
+      <div className="container mx-auto px-6" >
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold text-primary-foreground mb-4 italic">
+          <h2 className="text-4xl md:text-5xl font-medium text-primary-foreground mb-4">
             บริการของเรา
           </h2>
-          <p className="text-primary-foreground/70 max-w-2xl mx-auto">
+          <p className="text-white max-w-2xl mx-auto">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem velit viverra amet faucibus.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto ">
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="bg-card rounded-3xl p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group"
+              className="pt-[50px] bg-card rounded-3xl p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group"
             >
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 ${service.iconBg} group-hover:scale-110 transition-transform duration-300`}>
-                <service.icon className={`w-8 h-8 ${service.iconColor}`} />
+              <div className={`w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 ${service.iconBg} group-hover:scale-110 transition-transform duration-300`}>
+                {/* <service.icon className={`w-8 h-8 ${service.iconColor}`} /> */}
+                   <img src={service.icon} alt={service.icon} className="h-12" />
               </div>
-              <h3 className="text-lg font-semibold text-forest mb-3 leading-tight">
+              <h3 className="text-2xl font-medium text-[#2D2D2D] mb-5 leading-tight">
                 {service.title}
               </h3>
-              <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+              <p className="text-[#2D2D2D] text-md mb-4 leading-relaxed mt-4">
                 {service.description}
               </p>
               {service.link && (
                 <a 
                   href={service.link} 
-                  className="inline-flex items-center text-teal hover:text-teal-light transition-colors text-sm font-medium group/link"
+                  className="inline-flex items-center text-[#4C84CE] hover:text-teal-light transition-colors text-lg  group/link "
                 >
-                  ดูเพิ่มเติม
+                 <u>ดูรูปเพิ่มเติม</u> 
                   <ArrowRight className="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" />
                 </a>
               )}
