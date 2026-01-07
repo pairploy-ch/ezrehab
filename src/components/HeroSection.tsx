@@ -1,9 +1,9 @@
-import heroImage from '@/assets/hero-image.jpg';
+import heroImage from '@/assets/hero-image.png';
 import logo from '@/assets/logo.png';
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden min-h-screen pb-32">
+    <section className="relative overflow-hidden min-h-screen pb-56">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
