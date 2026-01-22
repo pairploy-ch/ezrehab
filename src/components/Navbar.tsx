@@ -22,7 +22,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <a href="/#about" className="nav-link">About Us</a>
             <a href="/#services" className="nav-link">Services</a>
-            <a href="#booking" className="nav-link">Booking</a>
+            <a href="https://lin.ee/NLCtlvj3" className="nav-link">Booking</a>
+             <a href="/review" className="nav-link">Review</a>
           </div>
 
           {/* Mobile Menu Button */}
