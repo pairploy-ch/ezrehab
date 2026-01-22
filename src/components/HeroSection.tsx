@@ -35,9 +35,9 @@ const HeroSection = () => {
            
             
           <p className="text-white text-lg mt-8">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            โดยทีมนักกายภาพบำบัดวิชาชีพ
             <br />
-            Sem velit viverra amet faucibus.
+           
           </p>
         </div>
       </div>

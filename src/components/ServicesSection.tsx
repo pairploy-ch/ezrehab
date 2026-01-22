@@ -40,7 +40,7 @@ const services = [
     title: "กายภาพบำบัดนอกสถานที่",
     description: "รักษาฟื้นฟู ที่บ้าน คลินิก เนอร์สซิ่งโฮม ศูนย์ดูแลผู้สูงอายุ",
     link: "/service/#on-site-therapys",
-    iconBg: "bg-[#FF625033]",
+    iconBg: "bg-[#00937933]",
     iconColor: "text-coral",
   },
   {
@@ -55,7 +55,7 @@ const services = [
   {
     icon: icon4,
     title: "สหวิชาชีพ",
-    description: "กิจกรรมบำบัด แก้ไขการพูด",
+    description: "กิจกรรมบำบัด แก้ไขการพูด ฝึกกลืน แพทย์แผนไทยและแผนจีน",
     link: null,
 
     iconBg: "bg-[#00937933]",
@@ -67,7 +67,7 @@ const services = [
     description:
       "ดูแล รับ ส่ง ตลอดการเดินทางพบหมอ และส่งกลับบ้าน รวมการส่งการส่งเอกสาร รับยาแทน",
     link: null,
-    iconBg: "bg-[#FF625033]",
+    iconBg: "bg-[#00937933]",
     iconColor: "text-forest",
   },
   {
@@ -94,10 +94,7 @@ const ServicesSection = () => {
           <h2 className="text-4xl md:text-5xl font-medium text-primary-foreground mb-4">
             บริการของเรา
           </h2>
-          <p className="text-white max-w-2xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem velit
-            viverra amet faucibus.
-          </p>
+       
         </div>
 
         {/* Services Grid */}

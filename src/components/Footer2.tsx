@@ -30,8 +30,7 @@ const Footer = () => {
                 EAZYREHUB
               </h3>
               <p className="text-[#C0C0C0] text-sm sm:text-md mt-2 sm:mt-4">
-                00/0 Sukhumwit Road, Sukhumwit , <br />
-                Sukhumwit , Bangkok 10101
+                ซอยติวานนท์ 38 ถนนติวานนท์ <br /> ตำบลบางกระสอ อำเภอเมือง จังหวัด นนทบุรี
               </p>
             </div>
           </div>
