@@ -31,18 +31,23 @@ const ReviewComponent = () => {
       const { data, error } = await supabase
         .from("review")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false })
+        .limit(3); // จำกัดให้แสดงแค่ 3 รายการล่าสุด
 
       if (error) throw error;
 
       setReviews(data || []);
 
-      // Calculate average rating
-      if (data && data.length > 0) {
+      // Calculate average rating - ใช้ทุกรีวิวในการคำนวณ
+      const { data: allReviews, error: countError } = await supabase
+        .from("review")
+        .select("rating");
+
+      if (!countError && allReviews && allReviews.length > 0) {
         const avg =
-          data.reduce((sum, review) => sum + review.rating, 0) / data.length;
+          allReviews.reduce((sum, review) => sum + review.rating, 0) / allReviews.length;
         setAverageRating(avg);
-        setTotalReviews(data.length);
+        setTotalReviews(allReviews.length);
       }
     } catch (error) {
       console.error("Error fetching reviews:", error);

@@ -20,10 +20,10 @@ export default {
     extend: {
       fontFamily: {
         /* ✅ ตั้ง IBM Plex Sans เป็น default sans */
-        sans: ["Kanit", "sans-serif"],
+        // sans: ["Kanit", "sans-serif"],
 
         /* (optional) ถ้ายังอยากเรียกใช้เฉพาะ */
-        ibm: ["Kanit", "sans-serif"],
+        // ibm: ["Kanit", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
