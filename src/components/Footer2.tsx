@@ -27,26 +27,33 @@ const Footer = () => {
               />
             </div>
 
-                <div>
+            <div>
               <h3 className="text-4xl sm:text-4xl font-medium text-white mt-2 sm:mt-4 mb-5">
-              EAZYREHUB
-            </h3>
+                EAZYREHAB
+              </h3>
               <div className="flex ">
-              <div>
-                <img
-                  src={location}
-                  alt="location"
-                  className="h-[50px] flex-shrink-0"
-                />
-              </div>
-              <div className="ml-2">
-                <p className="text-[#C0C0C0] text-sm sm:text-md mt-2 sm:mt-4">
-                  ซอยติวานนท์ 38 ถนนติวานนท์ <br /> ตำบลบางกระสอ อำเภอเมือง
-                  จังหวัด นนทบุรี
-                </p>
+                <div>
+                  <a
+                    href="https://maps.app.goo.gl/aJRS3N26E2X9EQhDA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                  >
+                    <img
+                      src={location}
+                      alt="location"
+                      className="h-[50px] flex-shrink-0"
+                    />
+                  </a>
+                </div>
+                <div className="ml-2">
+                  <p className="text-[#C0C0C0] text-sm sm:text-md mt-2 sm:mt-4">
+                    ซอยติวานนท์ 38 ถนนติวานนท์ <br /> ตำบลบางกระสอ อำเภอเมือง
+                    จังหวัด นนทบุรี
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
           </div>
 
           {/* Contact Info */}
@@ -102,7 +109,7 @@ const Footer = () => {
                     className="h-[28px] sm:h-[35px] flex-shrink-0"
                   />
                   <span className="text-sm sm:text-xl sm:ml-[-7px]">
-                    Eazy Rehub กายภาพบำบัดที่บ้าน
+                    Eazy Rehab กายภาพบำบัดที่บ้าน
                   </span>
                 </a>
               </div>

@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react';
-import vdo02 from '../assets/vdo/02.mp4';
+import vdo02 from '../assets/vdo/vdo.mp4';
 
 const VDO = () => {
   const videoRef = useRef(null);
 
-  // Auto-play video on mount
+
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));

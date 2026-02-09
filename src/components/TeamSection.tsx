@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import teamMember1 from '@/assets/team-1.png';
 import teamMember9 from '@/assets/team-9.png';
@@ -41,25 +41,25 @@ const teamMembers = [
     title: 'นักกายภาพ',
     license: 'ก.13963'
   },
-    {
+  {
     image: teamMember5,
     name: 'วินิตตา  ตรวจมรรคา',
     title: 'นักกายภาพ',
     license: 'ก.0000'
   },
-    {
+  {
     image: teamMember6,
     name: 'สุพิชชา วงศ์ผาสุกสถาพร',
     title: 'นักกายภาพ',
     license: 'ก.0000'
   },
-      {
+  {
     image: teamMember7,
     name: 'ฐิติยา วิบูลธิติ',
     title: 'นักกายภาพ',
     license: 'ก.0000'
   },
-       {
+  {
     image: teamMember8,
     name: 'สุนิทรา มงคลวัร์',
     title: 'นักกายภาพ',
@@ -69,6 +69,42 @@ const teamMembers = [
 
 const TeamSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const animationFrameRef = useRef<number>();
+
+  // Duplicate รายการสมาชิกทีมเพื่อสร้าง infinite loop
+  const duplicatedMembers = [...teamMembers, ...teamMembers, ...teamMembers];
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const autoScroll = () => {
+      if (isHovered && scrollContainer) {
+        scrollContainer.scrollLeft += 1;
+
+        // คำนวณความกว้างของรายการต้นฉบับ (1 ชุด)
+        const itemWidth = scrollContainer.scrollWidth / 3;
+        
+        // ถ้าเลื่อนผ่านชุดที่ 1 แล้ว ให้กลับไปจุดเริ่มต้น
+        if (scrollContainer.scrollLeft >= itemWidth) {
+          scrollContainer.scrollLeft = 0;
+        }
+
+        animationFrameRef.current = requestAnimationFrame(autoScroll);
+      }
+    };
+
+    if (isHovered) {
+      animationFrameRef.current = requestAnimationFrame(autoScroll);
+    }
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isHovered]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -81,30 +117,18 @@ const TeamSection = () => {
   };
 
   return (
-    <section className="pt-20 pb-10 bg-card relative">
+    <section 
+      className="pt-20 pb-10 bg-card relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="max-w-[100%] mx-auto px-6">
-        {/* Navigation Buttons */}
-        {/* <button 
-          onClick={() => scroll('left')}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-card shadow-lg rounded-full flex items-center justify-center hover:bg-muted transition-colors"
-          aria-label="Scroll left"
-        >
-          <ChevronLeft className="w-6 h-6 text-forest" />
-        </button>
-        <button 
-          onClick={() => scroll('right')}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-card shadow-lg rounded-full flex items-center justify-center hover:bg-muted transition-colors"
-          aria-label="Scroll right"
-        >
-          <ChevronRight className="w-6 h-6 text-forest" />
-        </button> */}
-
         {/* Team Carousel */}
         <div 
           ref={scrollRef}
           className="flex gap-8 overflow-x-auto pb-8 scrollbar-hide scroll-smooth px-8"
         >
-          {teamMembers.map((member, index) => (
+          {duplicatedMembers.map((member, index) => (
             <div 
               key={index} 
               className="flex-shrink-0 w-80 text-center group pb-5"

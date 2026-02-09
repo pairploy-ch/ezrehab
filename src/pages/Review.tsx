@@ -1,26 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { Star, Plus, User, X } from "lucide-react";
+import React, { useState, useEffect, ChangeEvent } from "react";
+import { Star, Plus, User, X, Image as ImageIcon, Trash2 } from "lucide-react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { createClient } from "@supabase/supabase-js";
 
-// Initialize Supabase client
+
 const supabaseUrl = "https://zwtvmxqyqokomblothlo.supabase.co";
 const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3dHZteHF5cW9rb21ibG90aGxvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNjExMDYsImV4cCI6MjA4NDYzNzEwNn0.BMvG5uqJCaW4Wwgrxs4ZClGqHXhxr9Gmmt6NFZ-Md3Y";
 const supabase = createClient(supabaseUrl, supabaseKey);
+
+interface Review {
+  id: number;
+  rating: number;
+  comment: string;
+  images?: string[];
+  created_at: string;
+}
 
 const ReviewComponent = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [averageRating, setAverageRating] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
+  const [selectedImages, setSelectedImages] = useState<File[]>([]);
+  const [imagePreview, setImagePreview] = useState<string[]>([]);
+  const [uploading, setUploading] = useState(false);
 
-  // Fetch reviews from Supabase
+  
   useEffect(() => {
     fetchReviews();
   }, []);
@@ -32,20 +43,20 @@ const ReviewComponent = () => {
         .from("review")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(3); // จำกัดให้แสดงแค่ 3 รายการล่าสุด
+        .limit(3);
 
       if (error) throw error;
 
       setReviews(data || []);
 
-      // Calculate average rating - ใช้ทุกรีวิวในการคำนวณ
+     
       const { data: allReviews, error: countError } = await supabase
         .from("review")
         .select("rating");
 
       if (!countError && allReviews && allReviews.length > 0) {
         const avg =
-          allReviews.reduce((sum, review) => sum + review.rating, 0) / allReviews.length;
+          allReviews.reduce((sum: number, review: { rating: number }) => sum + review.rating, 0) / allReviews.length;
         setAverageRating(avg);
         setTotalReviews(allReviews.length);
       }
@@ -56,7 +67,83 @@ const ReviewComponent = () => {
     }
   };
 
-  const renderStars = (rating) => {
+  const handleImageSelect = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    
+    const fileArray = Array.from(files);
+    
+  
+    if (selectedImages.length + fileArray.length > 5) {
+      alert("สามารถอัปโหลดรูปได้สูงสุด 5 รูปเท่านั้น");
+      return;
+    }
+
+  
+    const validFiles = fileArray.filter((file: File) => {
+      if (!file.type.startsWith('image/')) {
+        alert(`${file.name} ไม่ใช่ไฟล์รูปภาพ`);
+        return false;
+      }
+     
+      if (file.size > 5 * 1024 * 1024) {
+        alert(`${file.name} มีขนาดใหญ่เกิน 5MB`);
+        return false;
+      }
+      return true;
+    });
+
+    setSelectedImages([...selectedImages, ...validFiles]);
+
+   
+    validFiles.forEach((file: File) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(prev => [...prev, reader.result as string]);
+      };
+      reader.readAsDataURL(file);
+    });
+
+  
+    e.target.value = '';
+  };
+
+  const removeImage = (index: number) => {
+    setSelectedImages(selectedImages.filter((_, i) => i !== index));
+    setImagePreview(imagePreview.filter((_, i) => i !== index));
+  };
+
+  const uploadImages = async (): Promise<string[]> => {
+    if (selectedImages.length === 0) return [];
+
+    const uploadedUrls: string[] = [];
+
+    for (const file of selectedImages) {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('review-images')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        console.error('Error uploading image:', uploadError);
+        throw uploadError;
+      }
+
+    
+      const { data } = supabase.storage
+        .from('review-images')
+        .getPublicUrl(filePath);
+
+      uploadedUrls.push(data.publicUrl);
+    }
+
+    return uploadedUrls;
+  };
+
+  const renderStars = (rating: number) => {
     return (
       <div className="flex justify-center gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -87,32 +174,42 @@ const ReviewComponent = () => {
     }
 
     try {
+      setUploading(true);
+
+  
+      const imageUrls = await uploadImages();
+
+  
       const { data, error } = await supabase
         .from("review")
         .insert([
           {
             rating: rating,
             comment: reviewText.trim(),
+            images: imageUrls.length > 0 ? imageUrls : null,
           },
         ])
         .select();
 
       if (error) throw error;
 
-      // Success - show message
-      alert("ส่งรีวิวสำเร็จ ขอบคุณสำหรับความคิดเห็น! 🎉");
+      
 
-      // Reset form and close popup
+  
       setShowPopup(false);
       setRating(0);
       setHoverRating(0);
       setReviewText("");
+      setSelectedImages([]);
+      setImagePreview([]);
 
-      // Refresh reviews
+   
       fetchReviews();
     } catch (error) {
       console.error("Error submitting review:", error);
-      alert("เกิดข้อผิดพลาดในการส่งรีวิว กรุณาลองใหม่อีกครั้ง");
+     
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -148,7 +245,7 @@ const ReviewComponent = () => {
           {/* Comments Section */}
           <div className="bg-white px-8 pb-8">
             <h2 className="text-2xl  text-gray-900 mb-6">
-              Most Liked Comments
+              Latest Comments
             </h2>
 
             {loading ? (
@@ -191,6 +288,22 @@ const ReviewComponent = () => {
                     <p className="text-gray-700 leading-relaxed">
                       {review.comment}
                     </p>
+                    
+                    {/* แสดงรูปภาพ */}
+                    {review.images && review.images.length > 0 && (
+                      <div className="grid grid-cols-3 gap-2 mt-4">
+                        {review.images.map((imageUrl, idx) => (
+                          <img
+                            key={idx}
+                            src={imageUrl}
+                            alt={`Review image ${idx + 1}`}
+                            className="w-full h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+                            onClick={() => window.open(imageUrl, '_blank')}
+                          />
+                        ))}
+                      </div>
+                    )}
+                    
                     <p className="text-gray-400 text-sm mt-2">
                       {new Date(review.created_at).toLocaleDateString("th-TH", {
                         year: "numeric",
@@ -223,7 +336,7 @@ const ReviewComponent = () => {
             onClick={() => setShowPopup(false)}
           >
             <div
-              className="bg-white rounded-3xl w-full max-w-3xl shadow-2xl overflow-hidden"
+              className="bg-white rounded-3xl w-full max-w-3xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Popup Header */}
@@ -231,17 +344,6 @@ const ReviewComponent = () => {
                 <h2 className="text-2xl text-center text-gray-900">
                   Write Your Review
                 </h2>
-                {/* <button
-                  onClick={() => {
-                    setShowPopup(false);
-                    setRating(0);
-                    setHoverRating(0);
-                    setReviewText("");
-                  }}
-                  className="text-gray-500 hover:text-gray-700 transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button> */}
               </div>
 
               {/* Popup Content */}
@@ -254,8 +356,59 @@ const ReviewComponent = () => {
                   className="w-full h-64 bg-white rounded-3xl p-6 text-gray-900 placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-teal-600 border-2 border-gray-200"
                 />
 
+                {/* Image Upload Section */}
+                <div className="mt-4">
+                  <label className="block text-gray-700 font-semibold mb-2">
+                    เพิ่มรูปภาพ (สูงสุด 5 รูป)
+                  </label>
+                  
+                  {/* Image Preview */}
+                  {imagePreview.length > 0 && (
+                    <div className="grid grid-cols-5 gap-2 mb-4">
+                      {imagePreview.map((preview, index) => (
+                        <div key={index} className="relative group">
+                          <img
+                            src={preview}
+                            alt={`Preview ${index + 1}`}
+                            className="w-full h-24 object-cover rounded-lg"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeImage(index)}
+                            className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Upload Button */}
+                  {selectedImages.length < 5 && (
+                    <label className="cursor-pointer">
+                      <div className="bg-white border-2 border-dashed border-gray-300 rounded-2xl p-6 text-center hover:border-teal-600 transition-colors">
+                        <ImageIcon className="w-12 h-12 mx-auto text-gray-400 mb-2" />
+                        <p className="text-gray-600">
+                          คลิกเพื่อเลือกรูปภาพ ({selectedImages.length}/5)
+                        </p>
+                        <p className="text-gray-400 text-sm mt-1">
+                          รองรับ JPG, PNG, GIF (สูงสุด 5MB ต่อรูป)
+                        </p>
+                      </div>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={handleImageSelect}
+                        className="hidden"
+                      />
+                    </label>
+                  )}
+                </div>
+
                 {/* Star Rating */}
-                <div className="flex justify-center gap-2 mt-4 mb-4">
+                <div className="flex justify-center gap-2 mt-6 mb-4">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
                       key={star}
@@ -275,18 +428,15 @@ const ReviewComponent = () => {
                     </button>
                   ))}
                 </div>
-                {/* <p className="text-center text-gray-600 mb-8">
-                  {rating > 0 ? `คุณให้ ${rating} ดาว` : "กรุณาเลือกคะแนน"}
-                </p> */}
 
                 {/* Share Button */}
                 <button
                   type="button"
                   onClick={handleSubmitReview}
-                  disabled={rating === 0 || reviewText.trim() === ""}
+                  disabled={rating === 0 || reviewText.trim() === "" || uploading}
                   className="w-full bg-[#387C6B] hover:bg-teal-800 text-white  py-4 px-6 rounded-full transition-colors text-xl shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  Share
+                  {uploading ? "กำลังอัปโหลด..." : "Share"}
                 </button>
               </div>
             </div>

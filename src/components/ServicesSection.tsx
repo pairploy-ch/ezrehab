@@ -8,9 +8,9 @@ import {
   GraduationCap,
 } from "lucide-react";
 import icon1 from "@/assets/icon-service-1.png";
-import icon2 from "@/assets/icon-service-2.png";
+import icon2 from "@/assets/icon-home.png";
 import icon3 from "@/assets/icon-service-3.png";
-import icon4 from "@/assets/icon-service-4.png";
+import icon4 from "@/assets/icon-circle.png";
 import icon5 from "@/assets/icon-service-5.png";
 import icon6 from "@/assets/icon-service-6.png";
 import vdo01 from "@/assets/vdo/01.mp4";
