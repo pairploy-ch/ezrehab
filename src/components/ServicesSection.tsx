@@ -13,6 +13,8 @@ import icon3 from "@/assets/icon-service-3.png";
 import icon4 from "@/assets/icon-circle.png";
 import icon5 from "@/assets/icon-service-5.png";
 import icon6 from "@/assets/icon-service-6.png";
+import icon7 from "@/assets/icon-service-7.png";
+import icon8 from "@/assets/icon-service-8.png";
 import vdo01 from "@/assets/vdo/01.mp4";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./ServicesSection.css";
@@ -78,6 +80,22 @@ const services = [
     iconBg: "bg-[#00937933]",
     iconColor: "text-forest",
   },
+    {
+    icon: icon7,
+    title: "ดูแลผู้สูงอายุที่บ้าน",
+    description: "โดย พยาบาล ผู้ช่วยพยาบาล",
+    link: null,
+    iconBg: "bg-[#00937933]",
+    iconColor: "text-forest",
+  },
+      {
+    icon: icon8,
+    title: "เนอร์ซิ่งโฮม ศูนย์ดูแลผู้สูงอายุ ",
+    description: "ศูนย์ดูแลผู้สูงอายุผู้ป่วย แบบรายวันรายเดือน",
+    link: null,
+    iconBg: "bg-[#00937933]",
+    iconColor: "text-forest",
+  },
 ];
 
 const ServicesSection = () => {
@@ -90,7 +108,7 @@ const ServicesSection = () => {
 
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 mt-12">
           <h2 className="text-4xl md:text-5xl font-medium text-primary-foreground mb-4">
             บริการของเรา
           </h2>
