@@ -9,6 +9,11 @@ import teamMember5 from '@/assets/team-5.png';
 import teamMember6 from '@/assets/team-6.png';
 import teamMember7 from '@/assets/team-7.png';
 import teamMember8 from '@/assets/team-8.png';
+import teamMember10 from '@/assets/team-10.png';
+import teamMember11 from '@/assets/team-11.png';
+import teamMember12 from '@/assets/team-12.png';
+import teamMember13 from '@/assets/team-13.png';
+import teamMember14 from '@/assets/team-14.png';
 
 const teamMembers = [
   {
@@ -40,6 +45,36 @@ const teamMembers = [
     name: 'อัครนันท์ โกวิทเจริญวัฒน์',
     title: 'นักกายภาพ',
     license: 'ก.13963'
+  },
+    {
+    image: teamMember10,
+    name: 'ณัฐดนัย มัคคะรมย์',
+    title: 'นักกายภาพ',
+    license: 'ก.0000'
+  },
+      {
+    image: teamMember11,
+    name: 'ปิยะโชติ  มีวงษ์',
+    title: 'นักกายภาพ',
+    license: 'ก.0000'
+  },
+        {
+    image: teamMember12,
+    name: 'อภิวิชญ์ อภิวงค์งาม',
+    title: 'นักกายภาพ',
+    license: 'ก.17871'
+  },
+          {
+    image: teamMember13,
+    name: 'อยุทธ์เจตน์ ล้อเรืองสิน',
+    title: 'นักกิจกรรมบำบัด',
+    license: 'ก.0000'
+  },
+            {
+    image: teamMember14,
+    name: 'กนกพร ล้ำเลิศสุข',
+    title: 'นักกายภาพ',
+    license: 'ก.14404'
   },
   {
     image: teamMember5,

@@ -5,6 +5,7 @@ import youtube from "@/assets/icon-yt.png";
 import fb from "@/assets/icon-fb.png";
 import phone from "@/assets/icon-phonee.png";
 import location from "@/assets/icon-location.png";
+import tiktok from "@/assets/icon-tiktok.png";
 
 const Footer = () => {
   return (
@@ -26,14 +27,14 @@ const Footer = () => {
                 className="h-3 sm:h-4 brightness-0 invert"
               />
             </div>
-          <div>
+            <div>
               <h3 className="text-4xl sm:text-4xl font-medium text-white mt-2 sm:mt-4 mb-5">
-              EAZYREHAB 
-            </h3>
+                EAZYREHAB
+              </h3>
               <div className="flex ">
-              <div>
+                <div>
                   <a
-                    href="https://maps.app.goo.gl/aJRS3N26E2X9EQhDA"
+                    href="https://maps.app.goo.gl/gNrqH1RrbJnPkCJY8"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
@@ -44,16 +45,15 @@ const Footer = () => {
                       className="h-[50px] flex-shrink-0"
                     />
                   </a>
-              </div>
-              <div className="ml-2">
-                <p className="text-[#C0C0C0] text-sm sm:text-md mt-2 sm:mt-4">
-                  ซอยติวานนท์ 38 ถนนติวานนท์ <br /> ตำบลบางกระสอ อำเภอเมือง
-                  จังหวัด นนทบุรี
-                </p>
+                </div>
+                <div className="ml-2">
+                  <p className="text-[#C0C0C0] text-sm sm:text-md mt-2 sm:mt-4">
+                    ซอยติวานนท์ 38 ถนนติวานนท์ <br /> ตำบลบางกระสอ อำเภอเมือง
+                    จังหวัด นนทบุรี
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          
           </div>
 
           {/* Contact Info */}
@@ -65,7 +65,7 @@ const Footer = () => {
               <img
                 src={qrcode}
                 alt="QR Code"
-                className="h-[180px] sm:h-[230px]"
+                className="h-[180px] sm:h-[240px]"
               />
             </div>
             <div className="sm:ml-8 flex flex-col justify-between">
@@ -108,9 +108,22 @@ const Footer = () => {
                     alt="Facebook"
                     className="h-[28px] sm:h-[35px] flex-shrink-0"
                   />
-                  <span className="text-sm sm:text-xl sm:ml-[-7px]">
+                  <span className="text-sm sm:text-xl sm:ml-[-10px]">
                     Eazy Rehab กายภาพบำบัดที่บ้าน
                   </span>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@ezrehab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors mt-3"
+                >
+                  <img
+                    src={tiktok}
+                    alt="TikTok"
+                    className="h-[25px] sm:h-[30px] flex-shrink-0"
+                  />
+                  <span className="text-sm sm:text-xl">@ezrehab</span>
                 </a>
               </div>
             </div>

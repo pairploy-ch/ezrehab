@@ -34,7 +34,7 @@ const Footer = () => {
               <div className="flex ">
                 <div>
                   <a
-                    href="https://maps.app.goo.gl/aJRS3N26E2X9EQhDA"
+                    href="https://maps.app.goo.gl/gNrqH1RrbJnPkCJY8"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
@@ -100,6 +100,19 @@ const Footer = () => {
                   <span className="text-sm sm:text-xl">097 124 1688</span>
                 </a>
                 <a
+                  href="https://www.facebook.com/easyrehab/about"
+                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors mt-3 sm:mt-3"
+                >
+                  <img
+                    src={fb}
+                    alt="Facebook"
+                    className="h-[28px] sm:h-[35px] flex-shrink-0"
+                  />
+                  <span className="text-sm sm:text-xl sm:ml-[-7px]">
+                    Eazy Rehab กายภาพบำบัดที่บ้าน
+                  </span>
+                </a>
+                  <a
                   href="https://www.facebook.com/easyrehab/about"
                   className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors mt-3 sm:mt-3"
                 >
