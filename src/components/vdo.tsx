@@ -52,7 +52,7 @@ const VDO = () => {
     <div className="w-full bg-[#387C6B]">
       {/* Review Section with Video and Comments */}
       <div className="w-full">
-        <div className="py-8 md:py-12 lg:py-16 px-4 md:px-6">
+        <div className="py-8 md:py-12 px-4 md:px-6">
           <div className="max-w-7xl mx-auto">
             {/* Title */}
             <div className="text-center mb-8 md:mb-12 lg:mb-16">

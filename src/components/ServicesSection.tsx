@@ -102,7 +102,7 @@ const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="py-20 bg-[#387C6B] -mt-32 relative z-20 rounded-t-[40px] md:rounded-t-[70px]"
+      className="py-20 bg-[#387C6B] -mt-24 relative z-20 rounded-t-[40px] md:rounded-t-[70px]"
     >
 <VDO />
 

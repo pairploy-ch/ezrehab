@@ -1,131 +1,97 @@
-import { MapPin, Phone, MessageCircle } from "lucide-react";
-import logo from "@/assets/logo.png";
-import qrcode from "@/assets/add-QRCode.png";
-import youtube from "@/assets/icon-yt.png";
-import fb from "@/assets/icon-fb.png";
-import phone from "@/assets/icon-phonee.png";
-import location from "@/assets/icon-location.png";
-import tiktok from "@/assets/icon-tiktok.png";
+import { useRef, useEffect } from 'react';
+import icon1 from '@/assets/icon-nurse-1.png';
+import icon2 from '@/assets/icon-nurse-2.png';
+import icon3 from '@/assets/icon-nurse-3.png';
+import icon4 from '@/assets/icon-nurse-4.png';
+import icon5 from '@/assets/icon-nurse-5.png';
+import icon6 from '@/assets/icon-nurse-6.png';
+import icon7 from '@/assets/icon-nurse-7.png';
+import icon8 from '@/assets/icon-nurse-8.png';
+import icon9 from '@/assets/icon-nurse-9.png';
+import icon10 from '@/assets/icon-nurse-10.png';
+import icon11 from '@/assets/icon-nurse-11.png';
+import icon12 from '@/assets/icon-nurse-12.png';
+import icon13 from '@/assets/icon-nurse-13.png';
+import icon14 from '@/assets/icon-nurse-14.png';
+
+const partners = [
+  { image: icon1 }, { image: icon2 }, { image: icon3 }, { image: icon4 },
+  { image: icon5 }, { image: icon6 }, { image: icon7 }, { image: icon8 },
+  { image: icon9 }, { image: icon10 }, { image: icon11 }, { image: icon12 },
+  { image: icon13 }, { image: icon14 },
+];
 
 const Footer = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const animRef = useRef<number | null>(null);
+  const isHovering = useRef(false);
+
+  const startScroll = () => {
+    const scroll = () => {
+      if (!scrollRef.current || !isHovering.current) return;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      // ถึงท้ายแล้ว กลับไปต้น
+      if (scrollLeft + clientWidth >= scrollWidth) {
+        scrollRef.current.scrollLeft = 0;
+      } else {
+        scrollRef.current.scrollLeft += 1.5;
+      }
+      animRef.current = requestAnimationFrame(scroll);
+    };
+    animRef.current = requestAnimationFrame(scroll);
+  };
+
+  const stopScroll = () => {
+    if (animRef.current) {
+      cancelAnimationFrame(animRef.current);
+      animRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => stopScroll(); // cleanup on unmount
+  }, []);
+
   return (
     <footer
       className=""
       style={{ borderTopLeftRadius: "70px", borderTopRightRadius: "70px" }}
     >
       <div className="px-4 sm:px-6 bg-[#387C6B] py-8 sm:py-12">
-        <div
-          className="flex flex-col lg:flex-row max-w-[90%] mx-auto gap-8 lg:gap-0"
-          style={{ justifyContent: "space-between" }}
-        >
-          {/* Logo & Address */}
-          <div className="flex flex-col justify-between">
-            <div className="mb-4">
-              <img
-                src={logo}
-                alt="EZREHAB Logo"
-                className="h-3 sm:h-4 brightness-0 invert"
-              />
-            </div>
-            <div>
-              <h3 className="text-4xl sm:text-4xl font-medium text-white mt-2 sm:mt-4 mb-5">
-                EAZYREHAB
-              </h3>
-              <div className="flex ">
-                <div>
-                  <a
-                    href="https://maps.app.goo.gl/gNrqH1RrbJnPkCJY8"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                  >
-                    <img
-                      src={location}
-                      alt="location"
-                      className="h-[50px] flex-shrink-0"
-                    />
-                  </a>
-                </div>
-                <div className="ml-2">
-                  <p className="text-[#C0C0C0] text-sm sm:text-md mt-2 sm:mt-4">
-                    ซอยติวานนท์ 38 ถนนติวานนท์ <br /> ตำบลบางกระสอ อำเภอเมือง
-                    จังหวัด นนทบุรี
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="mx-auto px-6">
+          {/* Section Header */}
+          <div className="text-center mb-16 pt-[30px]">
+            <h2 className="text-xl md:text-3xl text-[#fff] mb-4" style={{ lineHeight: '1.2' }}>
+              ที่ปรึกษาครบวงจรสำหรับเนอร์สซิ่งโฮมและศูนย์ดูแลผู้สูงอายุ
+            </h2>
           </div>
 
-          {/* Contact Info */}
-          <div
-            className="bg-white/20 p-4 sm:p-6 flex flex-col sm:flex-row"
-            style={{ borderRadius: "40px", border: "1px solid #BCBCBC" }}
-          >
-            <div className="flex justify-center sm:justify-start mb-4 sm:mb-0">
-              <img
-                src={qrcode}
-                alt="QR Code"
-                className="h-[180px] sm:h-[240px]"
-              />
-            </div>
-            <div className="sm:ml-8 flex flex-col justify-between">
-              <h3 className="text-2xl sm:text-4xl text-white mb-4 sm:mb-6 text-center sm:text-left">
-                Contact Us
-              </h3>
-              <div className="space-y-3 sm:space-y-4 mb-2">
-                <a
-                  href="https://youtube.com/@EzRehabกายภาพ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  <img
-                    src={youtube}
-                    alt="YouTube"
-                    className="h-[24px] sm:h-[30px] flex-shrink-0"
-                  />
-                  <span className="text-sm sm:text-xl break-all">
-                    https://youtube.com/@EzRehabกายภาพ
-                  </span>
-                </a>
-                <a
-                  href="tel:0971241688"
-                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  <img
-                    src={phone}
-                    alt="Phone"
-                    className="h-[24px] sm:h-[30px] flex-shrink-0"
-                  />
-                  <span className="text-sm sm:text-xl">097 124 1688</span>
-                </a>
-                <a
-                  href="https://www.facebook.com/easyrehab/about"
-                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors mt-3 sm:mt-3"
-                >
-                  <img
-                    src={fb}
-                    alt="Facebook"
-                    className="h-[28px] sm:h-[35px] flex-shrink-0"
-                  />
-                  <span className="text-sm sm:text-xl sm:ml-[-10px]">
-                    Eazy Rehab กายภาพบำบัดที่บ้าน
-                  </span>
-                </a>
-                <a
-                  href="https://www.tiktok.com/@ezrehab"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors mt-3"
-                >
-                  <img
-                    src={tiktok}
-                    alt="TikTok"
-                    className="h-[25px] sm:h-[30px] flex-shrink-0"
-                  />
-                  <span className="text-sm sm:text-xl">@ezrehab</span>
-                </a>
-              </div>
+          {/* Carousel Container */}
+          <div className="relative max-w-[95%] mx-auto">
+            <div
+              ref={scrollRef}
+              onMouseEnter={() => {
+                isHovering.current = true;
+                startScroll();
+              }}
+              onMouseLeave={() => {
+                isHovering.current = false;
+                stopScroll();
+              }}
+              className="flex gap-6 overflow-x-auto pb-8 scroll-smooth px-4 cursor-pointer"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {partners.map((partner, index) => (
+                <div key={index} className="flex-shrink-0 w-36 text-center group ml-20">
+                  <div className="w-full aspect-square flex items-center justify-center">
+                    <img
+                      src={partner.image}
+                      alt={`partner-${index + 1}`}
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
