@@ -10,6 +10,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 interface Review {
   id: number;
+  name?: string;
   rating: number;
   comment: string;
   images?: string[];
@@ -110,7 +111,7 @@ const VDO = () => {
                         </div>
                         <div className="flex-1">
                           <span className="font-semibold text-gray-900 block text-sm md:text-base">
-                            User {review.id}
+                            {review.name || "Anonymous User"}
                           </span>
                           <div className="flex gap-1 mt-1">
                             {[1, 2, 3, 4, 5].map((star) => (

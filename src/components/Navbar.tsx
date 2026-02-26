@@ -39,9 +39,10 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              <a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>About Us</a>
-              <a href="#services" className="nav-link" onClick={() => setIsOpen(false)}>Services</a>
-              <a href="#booking" className="nav-link" onClick={() => setIsOpen(false)}>Booking</a>
+              <a href="/" className="nav-link">Home</a>
+              <a href="/review" className="nav-link">Review</a>
+              {/* <a href="#services" className="nav-link" onClick={() => setIsOpen(false)}>Services</a> */}
+              {/* <a href="#booking" className="nav-link" onClick={() => setIsOpen(false)}>Booking</a> */}
             </div>
           </div>
         )}

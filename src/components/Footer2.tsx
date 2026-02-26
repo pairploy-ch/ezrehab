@@ -5,6 +5,7 @@ import youtube from "@/assets/icon-yt.png";
 import fb from "@/assets/icon-fb.png";
 import phone from "@/assets/icon-phonee.png";
 import location from "@/assets/icon-location.png";
+import tiktok from "@/assets/icon-tiktok.png";
 
 const Footer = () => {
   return (
@@ -113,16 +114,16 @@ const Footer = () => {
                   </span>
                 </a>
                   <a
-                  href="https://www.facebook.com/easyrehab/about"
+                  href="https://www.tiktok.com/@ezrehab"
                   className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors mt-3 sm:mt-3"
                 >
                   <img
-                    src={fb}
-                    alt="Facebook"
-                    className="h-[28px] sm:h-[35px] flex-shrink-0"
+                    src={tiktok}
+                    alt="Tiktok"
+                    className="h-[24px] sm:h-[30px] flex-shrink-0"
                   />
-                  <span className="text-sm sm:text-xl sm:ml-[-7px]">
-                    Eazy Rehab กายภาพบำบัดที่บ้าน
+                  <span className="text-sm sm:text-xl sm:ml-0">
+                    @ezrehab
                   </span>
                 </a>
               </div>
