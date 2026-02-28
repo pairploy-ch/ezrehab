@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
-import { Star, Plus, User, Image as ImageIcon, Trash2 } from "lucide-react";
+import { Star, Plus, User, Image as ImageIcon, Trash2, Video } from "lucide-react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { createClient } from "@supabase/supabase-js";
@@ -9,12 +9,19 @@ const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3dHZteHF5cW9rb21ibG90aGxvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNjExMDYsImV4cCI6MjA4NDYzNzEwNn0.BMvG5uqJCaW4Wwgrxs4ZClGqHXhxr9Gmmt6NFZ-Md3Y";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+interface MediaFile {
+  file: File;
+  preview: string;
+  type: "image" | "video";
+}
+
 interface Review {
   id: number;
   name?: string;
   rating: number;
   comment: string;
   images?: string[];
+  videos?: string[];
   created_at: string;
 }
 
@@ -28,8 +35,7 @@ const ReviewComponent = () => {
   const [loading, setLoading] = useState(true);
   const [averageRating, setAverageRating] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
-  const [selectedImages, setSelectedImages] = useState<File[]>([]);
-  const [imagePreview, setImagePreview] = useState<string[]>([]);
+  const [selectedMedia, setSelectedMedia] = useState<MediaFile[]>([]);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -54,7 +60,8 @@ const ReviewComponent = () => {
 
       if (!countError && allReviews && allReviews.length > 0) {
         const avg =
-          allReviews.reduce((sum: number, review: { rating: number }) => sum + review.rating, 0) / allReviews.length;
+          allReviews.reduce((sum: number, review: { rating: number }) => sum + review.rating, 0) /
+          allReviews.length;
         setAverageRating(avg);
         setTotalReviews(allReviews.length);
       }
@@ -65,66 +72,81 @@ const ReviewComponent = () => {
     }
   };
 
-  const handleImageSelect = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleMediaSelect = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
     const fileArray = Array.from(files);
 
-    if (selectedImages.length + fileArray.length > 5) {
-      alert("สามารถอัปโหลดรูปได้สูงสุด 5 รูปเท่านั้น");
+    if (selectedMedia.length + fileArray.length > 5) {
+      alert("สามารถอัปโหลดสื่อได้สูงสุด 5 ไฟล์เท่านั้น");
       return;
     }
 
-    const validFiles = fileArray.filter((file: File) => {
-      if (!file.type.startsWith('image/')) {
-        alert(`${file.name} ไม่ใช่ไฟล์รูปภาพ`);
-        return false;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-        alert(`${file.name} มีขนาดใหญ่เกิน 5MB`);
-        return false;
-      }
-      return true;
-    });
+    const validMedia: MediaFile[] = [];
 
-    setSelectedImages([...selectedImages, ...validFiles]);
+    fileArray.forEach((file: File) => {
+      const isImage = file.type.startsWith("image/");
+      const isVideo = file.type.startsWith("video/");
 
-    validFiles.forEach((file: File) => {
+      if (!isImage && !isVideo) {
+        alert(`${file.name} ไม่ใช่ไฟล์รูปภาพหรือวิดีโอ`);
+        return;
+      }
+
+      const maxSize = isVideo ? 50 * 1024 * 1024 : 5 * 1024 * 1024;
+      const maxLabel = isVideo ? "50MB" : "5MB";
+      if (file.size > maxSize) {
+        alert(`${file.name} มีขนาดใหญ่เกิน ${maxLabel}`);
+        return;
+      }
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(prev => [...prev, reader.result as string]);
+        validMedia.push({
+          file,
+          preview: reader.result as string,
+          type: isImage ? "image" : "video",
+        });
+        if (validMedia.length === fileArray.filter((f) => f.type.startsWith("image/") || f.type.startsWith("video/")).length) {
+          setSelectedMedia((prev) => [...prev, ...validMedia]);
+        }
       };
       reader.readAsDataURL(file);
     });
 
-    e.target.value = '';
+    e.target.value = "";
   };
 
-  const removeImage = (index: number) => {
-    setSelectedImages(selectedImages.filter((_, i) => i !== index));
-    setImagePreview(imagePreview.filter((_, i) => i !== index));
+  const removeMedia = (index: number) => {
+    setSelectedMedia(selectedMedia.filter((_, i) => i !== index));
   };
 
-  const uploadImages = async (): Promise<string[]> => {
-    if (selectedImages.length === 0) return [];
-    const uploadedUrls: string[] = [];
+  const uploadMedia = async (): Promise<{ imageUrls: string[]; videoUrls: string[] }> => {
+    const imageUrls: string[] = [];
+    const videoUrls: string[] = [];
 
-    for (const file of selectedImages) {
-      const fileExt = file.name.split('.').pop();
+    for (const media of selectedMedia) {
+      const fileExt = media.file.name.split(".").pop();
       const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+      const bucket = media.type === "video" ? "review-videos" : "review-images";
 
       const { error: uploadError } = await supabase.storage
-        .from('review-images')
-        .upload(fileName, file);
+        .from(bucket)
+        .upload(fileName, media.file);
 
       if (uploadError) throw uploadError;
 
-      const { data } = supabase.storage.from('review-images').getPublicUrl(fileName);
-      uploadedUrls.push(data.publicUrl);
+      const { data } = supabase.storage.from(bucket).getPublicUrl(fileName);
+
+      if (media.type === "video") {
+        videoUrls.push(data.publicUrl);
+      } else {
+        imageUrls.push(data.publicUrl);
+      }
     }
 
-    return uploadedUrls;
+    return { imageUrls, videoUrls };
   };
 
   const renderStars = (rating: number) => (
@@ -136,8 +158,8 @@ const ReviewComponent = () => {
             star <= Math.floor(rating)
               ? "fill-yellow-500 text-yellow-500"
               : star - rating < 1
-                ? "fill-yellow-500 text-yellow-500 opacity-50"
-                : "fill-gray-300 text-gray-300"
+              ? "fill-yellow-500 text-yellow-500 opacity-50"
+              : "fill-gray-300 text-gray-300"
           }`}
         />
       ))}
@@ -151,16 +173,19 @@ const ReviewComponent = () => {
 
     try {
       setUploading(true);
-      const imageUrls = await uploadImages();
+      const { imageUrls, videoUrls } = await uploadMedia();
 
       const { error } = await supabase
         .from("review")
-        .insert([{
-          name: userName.trim(),
-          rating,
-          comment: reviewText.trim(),
-          images: imageUrls.length > 0 ? imageUrls : null,
-        }])
+        .insert([
+          {
+            name: userName.trim(),
+            rating,
+            comment: reviewText.trim(),
+            images: imageUrls.length > 0 ? imageUrls : null,
+            videos: videoUrls.length > 0 ? videoUrls : null,
+          },
+        ])
         .select();
 
       if (error) throw error;
@@ -170,11 +195,11 @@ const ReviewComponent = () => {
       setHoverRating(0);
       setReviewText("");
       setUserName("");
-      setSelectedImages([]);
-      setImagePreview([]);
+      setSelectedMedia([]);
       fetchReviews();
     } catch (error) {
       console.error("Error submitting review:", error);
+      alert("เกิดข้อผิดพลาดในการบันทึกรีวิว กรุณาลองใหม่อีกครั้ง");
     } finally {
       setUploading(false);
     }
@@ -254,6 +279,7 @@ const ReviewComponent = () => {
                       {review.comment}
                     </p>
 
+                    {/* Images */}
                     {review.images && review.images.length > 0 && (
                       <div className="grid grid-cols-3 gap-2 mt-3">
                         {review.images.map((imageUrl, idx) => (
@@ -262,7 +288,21 @@ const ReviewComponent = () => {
                             src={imageUrl}
                             alt={`Review image ${idx + 1}`}
                             className="w-full h-24 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
-                            onClick={() => window.open(imageUrl, '_blank')}
+                            onClick={() => window.open(imageUrl, "_blank")}
+                          />
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Videos */}
+                    {review.videos && review.videos.length > 0 && (
+                      <div className="flex flex-col gap-2 mt-3">
+                        {review.videos.map((videoUrl, idx) => (
+                          <video
+                            key={idx}
+                            src={videoUrl}
+                            controls
+                            className="w-full rounded-lg max-h-64 bg-black"
                           />
                         ))}
                       </div>
@@ -329,24 +369,38 @@ const ReviewComponent = () => {
                 className="w-full h-36 sm:h-64 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-gray-900 placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-teal-600 border-2 border-gray-200 text-sm sm:text-base"
               />
 
-              {/* Image Upload */}
+              {/* Media Upload */}
               <div className="mt-3 sm:mt-4">
                 <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                  เพิ่มรูปภาพ (สูงสุด 5 รูป)
+                  เพิ่มรูปภาพ / วิดีโอ (สูงสุด 5 ไฟล์)
                 </label>
 
-                {imagePreview.length > 0 && (
+                {/* Media Previews */}
+                {selectedMedia.length > 0 && (
                   <div className="grid grid-cols-5 gap-2 mb-3">
-                    {imagePreview.map((preview, index) => (
+                    {selectedMedia.map((media, index) => (
                       <div key={index} className="relative group">
-                        <img
-                          src={preview}
-                          alt={`Preview ${index + 1}`}
-                          className="w-full h-14 sm:h-24 object-cover rounded-lg"
-                        />
+                        {media.type === "image" ? (
+                          <img
+                            src={media.preview}
+                            alt={`Preview ${index + 1}`}
+                            className="w-full h-14 sm:h-24 object-cover rounded-lg"
+                          />
+                        ) : (
+                          <div className="w-full h-14 sm:h-24 bg-gray-800 rounded-lg flex items-center justify-center relative overflow-hidden">
+                            <video
+                              src={media.preview}
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                            {/* Video badge */}
+                            <div className="absolute bottom-1 left-1 bg-black bg-opacity-60 rounded px-1 py-0.5">
+                              <Video className="w-3 h-3 text-white" />
+                            </div>
+                          </div>
+                        )}
                         <button
                           type="button"
-                          onClick={() => removeImage(index)}
+                          onClick={() => removeMedia(index)}
                           className="absolute top-0.5 right-0.5 bg-red-500 text-white rounded-full p-0.5 sm:p-1 opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -356,22 +410,26 @@ const ReviewComponent = () => {
                   </div>
                 )}
 
-                {selectedImages.length < 5 && (
+                {/* Upload Button */}
+                {selectedMedia.length < 5 && (
                   <label className="cursor-pointer">
                     <div className="bg-white border-2 border-dashed border-gray-300 rounded-2xl p-4 sm:p-6 text-center hover:border-teal-600 transition-colors">
-                      <ImageIcon className="w-8 h-8 sm:w-12 sm:h-12 mx-auto text-gray-400 mb-2" />
+                      <div className="flex justify-center gap-3 mb-2">
+                        <ImageIcon className="w-8 h-8 sm:w-10 sm:h-10 text-gray-400" />
+                        <Video className="w-8 h-8 sm:w-10 sm:h-10 text-gray-400" />
+                      </div>
                       <p className="text-gray-600 text-sm sm:text-base">
-                        คลิกเพื่อเลือกรูปภาพ ({selectedImages.length}/5)
+                        คลิกเพื่อเลือกรูปภาพหรือวิดีโอ ({selectedMedia.length}/5)
                       </p>
                       <p className="text-gray-400 text-xs sm:text-sm mt-1">
-                        รองรับ JPG, PNG, GIF (สูงสุด 5MB ต่อรูป)
+                        รูปภาพ: JPG, PNG, GIF (สูงสุด 5MB) · วิดีโอ: MP4, MOV, WEBM (สูงสุด 50MB)
                       </p>
                     </div>
                     <input
                       type="file"
-                      accept="image/*"
+                      accept="image/*,video/*"
                       multiple
-                      onChange={handleImageSelect}
+                      onChange={handleMediaSelect}
                       className="hidden"
                     />
                   </label>

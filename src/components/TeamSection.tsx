@@ -20,7 +20,7 @@ const teamMembers = [
     image: teamMember1,
     name: 'อัครนันท์ โกวิทยเจริญวัฒน์',
     title: 'กายภาพบำบัดอาวุโส',
-    license: 'ก.111111'
+    license: 'ก.13963'
   },
   {
     image: teamMember9,
