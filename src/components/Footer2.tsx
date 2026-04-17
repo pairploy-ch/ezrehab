@@ -90,7 +90,7 @@ const Footer = () => {
                   </span>
                 </a>
                 <a
-                  href="tel:0971241688"
+                  href="tel:0922654744"
                   className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   <img
@@ -98,7 +98,7 @@ const Footer = () => {
                     alt="Phone"
                     className="h-[24px] sm:h-[30px] flex-shrink-0"
                   />
-                  <span className="text-sm sm:text-xl">097 124 1688</span>
+                  <span className="text-sm sm:text-xl">092 265 4744</span>
                 </a>
                 <a
                   href="https://www.facebook.com/easyrehab/about"

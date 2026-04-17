@@ -81,11 +81,11 @@ const HeroSection = () => {
                 </a>
 
                 <a
-                  href="tel:0971241688"
+                  href="tel:0922654744"
                   className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
                 >
                   <img src={phone} alt="Phone" className="h-4 sm:h-5 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm">097 124 1688</span>
+                  <span className="text-xs sm:text-sm">092 265 4744</span>
                 </a>
 
                 <a

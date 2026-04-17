@@ -13,12 +13,15 @@ import icon11 from '@/assets/icon-nurse-11.png';
 import icon12 from '@/assets/icon-nurse-12.png';
 import icon13 from '@/assets/icon-nurse-13.png';
 import icon14 from '@/assets/icon-nurse-14.png';
+import icon15 from '@/assets/icon-nurse-15.avif';
+import icon16 from '@/assets/icon-nurse-16.png';
+import icon17 from '@/assets/icon-nurse-17.png';
 
 const partners = [
   { image: icon1 }, { image: icon2 }, { image: icon3 }, { image: icon4 },
   { image: icon5 }, { image: icon6 }, { image: icon7 }, { image: icon8 },
   { image: icon9 }, { image: icon10 }, { image: icon11 }, { image: icon12 },
-  { image: icon13 }, { image: icon14 },
+  { image: icon13 }, { image: icon14 },{ image: icon15 },{ image: icon16 },{ image: icon17 },
 ];
 
 const Footer = () => {
