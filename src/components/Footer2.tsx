@@ -35,7 +35,7 @@ const Footer = () => {
               <div className="flex ">
                 <div>
                   <a
-                    href="https://maps.app.goo.gl/gNrqH1RrbJnPkCJY8"
+                    href="https://maps.app.goo.gl/7Mn1rVp5gtFx1u236"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 sm:gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors"
