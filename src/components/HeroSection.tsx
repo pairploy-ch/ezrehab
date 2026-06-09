@@ -101,7 +101,7 @@ const HeroSection = () => {
                 </a>
 
                 <a
-                  href="https://maps.app.goo.gl/gNrqH1RrbJnPkCJY8"
+                  href="https://maps.app.goo.gl/ZBxoGzfCZ1RwqYu38"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
